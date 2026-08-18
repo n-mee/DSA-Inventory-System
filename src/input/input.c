@@ -31,3 +31,19 @@ int get_item_credentials(Product* new_item) {
 
     return 1;
 }
+
+int get_item_id(int* id) {
+    char buffer[100];
+
+    printf("Enter product ID: ");
+
+    if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+        return 0;
+    }
+
+    if(sscanf(buffer, " %d", id) != 1){
+        return 0;
+    }
+
+    return 1;
+}
