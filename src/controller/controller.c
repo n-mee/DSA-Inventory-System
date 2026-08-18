@@ -50,7 +50,6 @@ static void handle_deletion(InventoryDatabase* inventory) {
     }
 
     printf("[+] Operation Success!\n");
-    view_render_table(inventory);
 }
 
 void handle_display_items(InventoryDatabase* inventory, int choice) 
