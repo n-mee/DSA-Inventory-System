@@ -1,0 +1,9 @@
+.vscode/
+bin/
+build/
+
+
+.o
+.out
+
+
