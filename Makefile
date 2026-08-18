@@ -1,0 +1,40 @@
+CC := gcc
+CFLAGS := -Iinclude -Wall -Wextra -g
+
+BIN_DIR := bin
+BUILD_DIR := build
+
+SRCS := src/main.c $(wildcard src/controller/*.c src/repository/*.c src/service/*.c src/input/*.c src/cli/*.c)
+OBJS := $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))
+DEPS := $(OBJS:.o=.d)
+
+TARGET := $(BIN_DIR)/inventorysystem
+
+.PHONY: all clean memcheck run
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+		@mkdir -p $(BIN_DIR)
+		$(CC) $(CFLAGS) $^ -o $@
+
+
+$(BUILD_DIR)/%.o: %.c
+		@mkdir -p $(dir $@)
+		$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+		rm -rf $(BUILD_DIR)/* $(BIN_DIR)/*
+
+
+memcheck: $(TARGET)
+	valgrind --leak-check=full \
+	         --show-leak-kinds=all \
+	         --track-origins=yes \
+			 --error-exitcode=1 \
+	         ./$(TARGET)
+
+run: all
+		./$(TARGET)
+
+-include $(DEPS)
