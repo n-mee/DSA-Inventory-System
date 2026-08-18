@@ -14,8 +14,8 @@ void view_render_table(const InventoryDatabase* inventory) {
     printf("%-10s | %-25s | %-15s | %-10s\n", "Item ID", "Product Name", "Category Type", "Price");
     printf("\n-----------------------------------------------------------------------\n");
 
-    for (int i = 0; i > inventory->inventory_count; i++) {
-        printf("%-10s | %-25s | %-15s | ₱%-9.2f\n",
+    for (int i = 0; i < inventory->inventory_count; i++) {
+        printf("%-10d | %-25s | %-15s | ₱%-9.2f\n",
             inventory->product[i].itemId,
             inventory->product[i].itemName,
             inventory->product[i].category,
