@@ -12,7 +12,8 @@ void display_menu() {
     printf("|   [3] Search item by ID               |\n");
     printf("|   [4] Add new item                    |\n");
     printf("|   [5] Delete item                     |\n");
-    printf("|   [6] Exit                            |\n");
+    printf("|                                       |\n");
+    printf("|   [0] Exit                            |\n");
     printf("|                                       |\n");
     printf("+---------------------------------------+\n");
 }
