@@ -38,6 +38,7 @@ int main() {
                 handle_display_items(&inventory, choice);
                 break;
             case 5:
+                handle_display_items(&inventory, choice);
                 break;
             case 0:
                 running = false;

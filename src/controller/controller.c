@@ -22,6 +22,37 @@ static void handle_insertion(InventoryDatabase* inventory) {
     printf("\nInsertion Completed Successfully\n");
 }
 
+static void handle_deletion(InventoryDatabase* inventory) {
+
+    if (inventory == NULL) {
+        printf("[!] ERROR: System database returned NULL.\n");
+        return;
+    }
+
+    if (inventory->inventory_count == 0) {
+        printf("[!] ERROR: System datbase is empty.\n");
+        return;
+    }
+
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+
+    int target_id = -1;
+    
+    if (get_item_id(&target_id) == 0) {
+        printf("[!] ERROR: An error occured during id input.\n");
+        return;
+    }
+
+    if (delete_item(inventory, target_id) == 0){
+        printf("An error has occured during deletion of the item\n");
+        return;
+    }
+
+    printf("[+] Operation Success!\n");
+    view_render_table(inventory);
+}
+
 void handle_display_items(InventoryDatabase* inventory, int choice) 
 {
     switch (choice) 
@@ -36,6 +67,8 @@ void handle_display_items(InventoryDatabase* inventory, int choice)
         case 4:
             handle_insertion(inventory);
             break;
+        case 5:
+            handle_deletion(inventory);
         default: break;
     }
 }
