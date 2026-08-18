@@ -2,6 +2,7 @@
 .vscode/
 bin/
 build/
+test/
 
 #ignore build files
 .o
