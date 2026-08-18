@@ -1,9 +1,11 @@
+#ignore build directory
 .vscode/
 bin/
 build/
 
-
+#ignore build files
 .o
 .out
+
 
 
