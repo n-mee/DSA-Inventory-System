@@ -26,7 +26,7 @@ int database_add_item(InventoryDatabase* db, Product new_item)
     db->product[index] = new_item;
 
     db->inventory_count++;
-    return db->product->itemId;
+    return db->product[index].itemId;
 }
 
 int expand_database(InventoryDatabase* db, int capacity) 
