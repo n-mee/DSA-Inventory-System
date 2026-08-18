@@ -4,7 +4,7 @@ CFLAGS := -Iinclude -Wall -Wextra -g
 BIN_DIR := bin
 BUILD_DIR := build
 
-SRCS := src/main.c $(wildcard src/controller/*.c src/repository/*.c src/service/*.c src/input/*.c src/cli/*.c)
+SRCS := src/main.c $(wildcard src/controller/*.c src/repository/*.c src/service/*.c src/input/*.c src/cli/*.c src/common/*.c)
 OBJS := $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)
 
