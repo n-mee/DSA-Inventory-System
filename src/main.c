@@ -21,8 +21,7 @@ int main() {
 
     while(running) {
         display_menu();
-        printf("Enter your choice: ");
-        scanf(" %d", &choice);
+        choice = get_int_input("Enter your choice: ");
 
         switch (choice) 
         {
@@ -46,7 +45,9 @@ int main() {
             case 0:
                 running = false;
                 break;
-            default: break; 
+            default:
+                printf("[!] ERROR: Invalid choice.\n"); 
+                break; 
         }
     }
 

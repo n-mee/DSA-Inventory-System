@@ -38,12 +38,7 @@ static void handle_deletion(InventoryDatabase* inventory) {
     int c;
     while((c = getchar()) != '\n' && c != EOF);
 
-    int target_id = -1;
-    
-    if (get_item_id(&target_id) == 0) {
-        printf("[!] ERROR: An error occured during id input.\n");
-        return;
-    }
+    int target_id = get_int_input("Enter target item ID: ");
 
     if (delete_item(inventory, target_id) == 0){
         printf("An error has occured during deletion of the item\n");
@@ -52,6 +47,15 @@ static void handle_deletion(InventoryDatabase* inventory) {
 
     printf("[+] Operation Success!\n");
 }
+
+// void handle_search_by_id(InventoryDatabase* inventory) {
+//     if (inventory == NULL) {
+//         printf("[!] ERROR: Database is empty.\n");
+//         return;
+//     }
+
+//     int item_id = get
+// }
 
 static void update_item_info(InventoryDatabase* inventory) {
     if (inventory == NULL) {
@@ -62,14 +66,9 @@ static void update_item_info(InventoryDatabase* inventory) {
     int c;
     while((c = getchar()) != '\n' && c != EOF);
 
-    int target_id = -1;
-    if (get_item_id(&target_id) == 0) return;
+    int target_id = get_int_input("Enter target ID: ");
 
     Product tmp = {0};
-    if (get_new_info(&tmp) == -1) {
-        printf("[!] ERROR: An error occured when getting new credentials.\n");
-        return;
-    }
 
     if (update_item(inventory, &tmp, &target_id) == -1) {
         printf("[!] ERROR: An error occured during updating process.\n");
