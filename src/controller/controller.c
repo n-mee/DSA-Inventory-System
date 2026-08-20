@@ -8,9 +8,6 @@
 static void handle_insertion(InventoryDatabase* inventory) {
     if (inventory == NULL) return;
 
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
-
     Product new_item = {0};
 
     if (get_item_credentials(&new_item) == 0) return;
@@ -35,9 +32,6 @@ static void handle_deletion(InventoryDatabase* inventory) {
         return;
     }
 
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
-
     int target_id = get_int_input("Enter target item ID: ");
 
     if (delete_item(inventory, target_id) == 0){
@@ -48,14 +42,22 @@ static void handle_deletion(InventoryDatabase* inventory) {
     printf("[+] Operation Success!\n");
 }
 
-// void handle_search_by_id(InventoryDatabase* inventory) {
-//     if (inventory == NULL) {
-//         printf("[!] ERROR: Database is empty.\n");
-//         return;
-//     }
+void handle_search_by_id(InventoryDatabase* inventory) {
+    if (inventory == NULL) {
+        printf("[!] ERROR: Database is empty.\n");
+        return;
+    }
 
-//     int item_id = get
-// }
+    int item_id = get_int_input("Enter target ID: ");
+    int found_id = find_item_by_id(inventory, item_id);
+
+    if (found_id == -1) {
+        printf("[!] ERROR: Item ID is null or Not in database!\n");
+        return;
+    }
+
+    view_rander_single_item(&inventory->product[found_id]);
+}
 
 static void update_item_info(InventoryDatabase* inventory) {
     if (inventory == NULL) {
@@ -90,6 +92,7 @@ void handle_display_items(InventoryDatabase* inventory, int choice)
             view_render_table(inventory);
             break;
         case 3:
+            handle_search_by_id(inventory);
             break;
         case 4:
             handle_insertion(inventory);
