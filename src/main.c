@@ -56,6 +56,7 @@ int main() {
                 printf("[+] System is exiting..\n");
                 clear_screen(2);
                 printf("[+] Thank you for checking out our system.\n");
+                clear_screen(2);
                 running = false;
                 break;
             default:
