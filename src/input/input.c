@@ -47,3 +47,18 @@ int get_item_id(int* id) {
 
     return 1;
 }
+
+int get_new_info(Product* info) {
+    char buffer[100];
+    
+    if (get_input("Enter new item name: ", info->itemName, sizeof(info->itemName)) == 0 ||
+        get_input("Enter new item's category type: ", info->category, sizeof(info->category)) == 0) {
+        return -1;
+    }
+
+    printf("Enter new item price: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%lf", &info->price);
+
+    return 1;
+}
