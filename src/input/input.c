@@ -15,8 +15,8 @@ int get_input(const char* msg, char* target, size_t size){
 
 int get_item_credentials(Product* new_item) {
 
-    if (get_input("\nEnter product name: ", new_item->itemName, sizeof(new_item->itemName)) == 0 ||
-        get_input("\nEnter product category: ", new_item->category, sizeof(new_item->category)) == 0) {
+    if (get_input("Enter product name: ", new_item->itemName, sizeof(new_item->itemName)) == 0 ||
+        get_input("Enter product category: ", new_item->category, sizeof(new_item->category)) == 0) {
         return 0;
     }
 
@@ -47,7 +47,7 @@ int get_int_input(const char* msg_prompt) {
     }
 }
 
-int get_double_input(const char* msg_prompt) {
+double get_double_input(const char* msg_prompt) {
     char buffer[100];
     double out_n;
 
@@ -59,7 +59,7 @@ int get_double_input(const char* msg_prompt) {
                 while((c = getchar()) != '\n' && c != EOF);
             }
 
-            if (scanf(buffer, " %lf", &out_n) == 1.00){
+            if (sscanf(buffer, " %lf", &out_n) == 1.00){
                 return out_n;
             } 
         }
