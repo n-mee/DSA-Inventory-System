@@ -3,17 +3,22 @@
 #include "input/input.h"
 #include "common/utils.h"
 
-int get_input(const char* msg, char* target, size_t size){
+int get_input(const char* msg, char* target, size_t size)
+{
     printf("%s", msg);
-    if (fgets(target, size, stdin) == NULL) {
+
+    if (fgets(target, size, stdin) == NULL) 
+    {
         printf("[!] ERROR: Something went wrong.\n");
         return 0;
     }
+    
     target[strcspn(target, "\n")] = '\0';
     return 1;
 }
 
-int get_item_credentials(Product* new_item) {
+int get_item_credentials(Product* new_item) 
+{
 
     if (get_input("Enter product name: ", new_item->itemName, sizeof(new_item->itemName)) == 0 ||
         get_input("Enter product category: ", new_item->category, sizeof(new_item->category)) == 0) {
@@ -26,7 +31,8 @@ int get_item_credentials(Product* new_item) {
     return 1;
 }
 
-int get_new_info(Product* info) {
+int get_new_info(Product* info) 
+{
     
     if (get_input("Enter new item name: ", info->itemName, sizeof(info->itemName)) == 0 ||
         get_input("Enter new item's category type: ", info->category, sizeof(info->category)) == 0) {

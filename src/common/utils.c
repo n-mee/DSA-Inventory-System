@@ -11,20 +11,24 @@ void clear_screen(unsigned int s) {
     fflush(stdout);
 }
 
-int get_int_input(const char* msg_prompt) {
+int get_int_input(const char* msg_prompt) 
+{
     char buffer[100];
     int out_n;
 
     while (1) {
         printf("%s", msg_prompt);
-        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) 
+        {
 
-            if (strchr(buffer, '\n') == NULL) {
+            if (strchr(buffer, '\n') == NULL) 
+            {
                 int c;
                 while((c = getchar()) != '\n' && c != EOF);
             }
 
-            if (sscanf(buffer, " %d", &out_n) == 1) {
+            if (sscanf(buffer, " %d", &out_n) == 1) 
+            {
                 return out_n;
             }
         }

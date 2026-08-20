@@ -27,7 +27,6 @@ int delete_item(InventoryDatabase* inventory, int target_id) {
     if (inventory == NULL) return 0;
 
     int found_index = find_item_by_id(inventory, target_id);
-
     if (found_index == -1) return 0;
 
     for (int i = found_index; i < inventory->inventory_count - 1; i++) {
@@ -35,25 +34,31 @@ int delete_item(InventoryDatabase* inventory, int target_id) {
     }
     inventory->inventory_count--;
 
-    if (inventory->inventory_count > 0) {
+    if (inventory->inventory_count > 0) 
+    {
         Product* tmp = (Product*)realloc(inventory->product, inventory->inventory_count * sizeof(Product));
-        if (tmp != NULL) {
+
+        if (tmp != NULL) 
+        {
             inventory->product = tmp;
             inventory->inventory_capacity = inventory->inventory_count;
         }
-    } else {
+    } 
+    else 
+    {
         free(inventory->product);
         inventory->product = NULL;
         inventory->inventory_capacity = 0;
     }
+
     return 1;
 }
 
-int update_item (InventoryDatabase* inventory, Product* target, int* target_id) {
+int update_item (InventoryDatabase* inventory, Product* target, int* target_id) 
+{
     if (inventory == NULL || target_id == NULL) return -1;
 
     int found_id = find_item_by_id(inventory, *target_id);
-
     if (found_id == -1) return -1;
 
     inventory->product[found_id] = *target;

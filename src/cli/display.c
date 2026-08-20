@@ -4,8 +4,10 @@
 #include "repository/inventory_database.h"
 #include "model/product_model.h"
 
-void view_render_table(const InventoryDatabase* inventory) {
-    if (inventory == NULL || inventory->inventory_count == 0) {
+void view_render_table(const InventoryDatabase* inventory) 
+{
+    if (inventory == NULL || inventory->inventory_count == 0) 
+    {
         printf("[!] This inventory is currently empty.\n");
         return;
     }
@@ -14,7 +16,8 @@ void view_render_table(const InventoryDatabase* inventory) {
     printf("%-10s | %-25s | %-15s | %-10s\n", "Item ID", "Product Name", "Category Type", "Price");
     printf("\n-----------------------------------------------------------------------\n");
 
-    for (int i = 0; i < inventory->inventory_count; i++) {
+    for (int i = 0; i < inventory->inventory_count; i++) 
+    {
         printf("%-10d | %-25s | %-15s | ₱%-9.2f\n",
             inventory->product[i].itemId,
             inventory->product[i].itemName,
@@ -24,8 +27,10 @@ void view_render_table(const InventoryDatabase* inventory) {
     printf("=======================================================================\n");
 }
 
-void view_render_single_item(const Product* item) {
-    if (item == NULL) {
+void view_render_single_item(const Product* item) 
+{
+    if (item == NULL) 
+    {
         printf("[!] ERROR: Item is missing.\n");
         return;
     }
@@ -40,8 +45,10 @@ void view_render_single_item(const Product* item) {
     printf("=======================================================================\n");
 }
 
-void print_product(int product_count, Product* item) {
-    for (int i = 0; i < product_count; i++) {
+void print_product(int product_count, Product* item) 
+{
+    for (int i = 0; i < product_count; i++) 
+    {
         printf("\nName: %s\nCategory: %s\nItem ID: %d\nPrice: %.2f\n", 
             item[i].itemName, item[i].category, item[i].itemId, item[i].price);
     }
