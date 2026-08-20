@@ -40,6 +40,9 @@ int main() {
             case 5:
                 handle_display_items(&inventory, choice);
                 break;
+            case 6:
+                handle_display_items(&inventory, choice);
+                break;
             case 0:
                 running = false;
                 break;

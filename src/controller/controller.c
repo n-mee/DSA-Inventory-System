@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "input/input.h"
 #include "cli/display.h"
+#include "common/utils.h"
 #include "service/inventory_service.h"
 #include "controller/controller.h"
 
@@ -52,6 +53,32 @@ static void handle_deletion(InventoryDatabase* inventory) {
     printf("[+] Operation Success!\n");
 }
 
+static void update_item_info(InventoryDatabase* inventory) {
+    if (inventory == NULL) {
+        printf("[!] ERROR: Database is Null.\n");
+        return;
+    }
+
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+
+    int target_id = -1;
+    if (get_item_id(&target_id) == 0) return;
+
+    Product tmp = {0};
+    if (get_new_info(&tmp) == -1) {
+        printf("[!] ERROR: An error occured when getting new credentials.\n");
+        return;
+    }
+
+    if (update_item(inventory, &tmp, &target_id) == -1) {
+        printf("[!] ERROR: An error occured during updating process.\n");
+        return;
+    }
+
+    printf("[+] Operation success!\n");
+}
+
 void handle_display_items(InventoryDatabase* inventory, int choice) 
 {
     switch (choice) 
@@ -63,10 +90,15 @@ void handle_display_items(InventoryDatabase* inventory, int choice)
             sort_by_category(inventory);
             view_render_table(inventory);
             break;
+        case 3:
+            break;
         case 4:
             handle_insertion(inventory);
             break;
         case 5:
+            update_item_info(inventory);
+            break;
+        case 6:
             handle_deletion(inventory);
         default: break;
     }
