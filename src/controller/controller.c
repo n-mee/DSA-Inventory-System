@@ -74,7 +74,7 @@ static void update_item_info(InventoryDatabase* inventory)
         printf("[!] ERROR: Database is Null.\n");
         return;
     }
-    
+
     int target_id = get_int_input("Enter target ID: ");
 
     Product tmp = {0};
@@ -88,7 +88,7 @@ static void update_item_info(InventoryDatabase* inventory)
     printf("[+] Operation success!\n");
 }
 
-void handle_display_items(InventoryDatabase* inventory, int choice) 
+void route_menu_choice(InventoryDatabase* inventory, int choice) 
 {
     switch (choice) 
     {

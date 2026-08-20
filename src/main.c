@@ -28,27 +28,27 @@ int main() {
         switch (choice) 
         {
             case 1:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(1);
                 break;
             case 2:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(6);
                 break;
             case 3:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(1);
                 break;
             case 4:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(1);
                 break;
             case 5:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(1);
                 break;
             case 6:
-                handle_display_items(&inventory, choice);
+                route_menu_choice(&inventory, choice);
                 clear_screen(1);
                 break;
             case 0:

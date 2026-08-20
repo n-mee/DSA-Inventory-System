@@ -8,6 +8,6 @@
  * @param inventory reference for inventory's database
  * @param choice the decider on what operation it should do depending on user input
  */
-void handle_display_items(InventoryDatabase* inventory, int choice);
+void route_menu_choice(InventoryDatabase* inventory, int choice);
 
 #endif
