@@ -3,6 +3,8 @@ name: C Inventory
 on:
     push:
         branches: "main"
+        tags:
+            - 'v*'
     pull_request:
         branches: "main"
 
@@ -12,6 +14,11 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest]
+                include:
+                  - os: ubuntu-latest
+                    artifact_name: InventorySystem_linux
+                  - os: windows-latest
+                    artifact_name: InventorySystem_Windows.exe
 
         runs-on: ${{ matrix.os }}
 
@@ -36,3 +43,47 @@ jobs:
             - name: Check for memory leaks
               if: matrix.os == 'ubuntu-latest'
               run: echo '0' | make memcheck
+
+            - name: Rename executable for release
+              shell: bash
+              run: |
+                if [ "{{ matrix.os }}" == "windows-latest" ]; then
+                  mv bin/inventorysystem.exe ${{ matrix.artifact_name }} || echo "No exectuable (.exe) found, matching name"
+                else
+                  mv bin/inventorysystem ${{ matrix.artifact_name }} || echo "No binary file found, matching name"
+                fi
+
+            - name: Upload Artifacts for Release
+              uses: actions/upload-artifact@v4
+              with:
+                name: ${{ matrix.artifact_name }}
+                path: ${{ matrix.artifact_name }}
+
+    release:
+        name: Create Runnable App
+        needs: build
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        runs-on: ubuntu-latest
+
+        permissions:
+          contents: write
+
+        steps:
+            - name: Download all compiled binary
+              uses: actions/download-artifact@v4
+              with:
+                path: ./artifacts
+                merge-multiple: true
+              
+            - name: Create Automated Release
+              uses: softprops/action-gh-release@v2
+              with:
+                tag_name: ${{ github.ref_name }}
+                name: Release ${{ github.ref_name }}
+                draft: false
+                prerelease: false
+                files: |
+                  ./artifacts/InventorySystem_linux
+                  ./artifacts/InventorySystem_Windows.exe
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
