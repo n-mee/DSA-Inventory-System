@@ -14,20 +14,14 @@ int get_input(const char* msg, char* target, size_t size){
 }
 
 int get_item_credentials(Product* new_item) {
-    char buffer[100];
 
     if (get_input("\nEnter product name: ", new_item->itemName, sizeof(new_item->itemName)) == 0 ||
         get_input("\nEnter product category: ", new_item->category, sizeof(new_item->category)) == 0) {
         return 0;
     }
 
-    printf("Enter the product's ID: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, " %d", &new_item->itemId);
-
-    printf("Enter initial price: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer," %lf", &new_item->price);
+    new_item->itemId = get_int_input("Enter new ID: ");
+    new_item->price = get_double_input("Enter initial price: ");
 
     return 1;
 }
@@ -53,17 +47,33 @@ int get_int_input(const char* msg_prompt) {
     }
 }
 
-int get_new_info(Product* info) {
+int get_double_input(const char* msg_prompt) {
     char buffer[100];
+    double out_n;
+
+    while (1) {
+        printf("%s", msg_prompt);
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+            if (strchr(buffer, '\n') == NULL) {
+                int c;
+                while((c = getchar()) != '\n' && c != EOF);
+            }
+
+            if (scanf(buffer, " %lf", &out_n) == 1.00){
+                return out_n;
+            } 
+        }
+        printf("[!] ERROR: Enter valid input.\n");
+    }
+}
+
+int get_new_info(Product* info) {
     
     if (get_input("Enter new item name: ", info->itemName, sizeof(info->itemName)) == 0 ||
         get_input("Enter new item's category type: ", info->category, sizeof(info->category)) == 0) {
         return -1;
     }
-
-    printf("Enter new item price: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%lf", &info->price);
+    info->price = get_double_input("Enter new price: ");
 
     return 1;
 }

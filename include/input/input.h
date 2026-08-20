@@ -7,6 +7,7 @@
 int get_input(const char* msg, char* target, size_t size);
 int get_item_credentials(Product* new_item);
 int get_int_input(const char* msg_prompt);
+int get_double_input(const char* msg_prompt);
 int get_new_info(Product* info);
 
 #endif
