@@ -56,7 +56,7 @@ void handle_search_by_id(InventoryDatabase* inventory) {
         return;
     }
 
-    view_rander_single_item(&inventory->product[found_id]);
+    view_render_single_item(&inventory->product[found_id]);
 }
 
 static void update_item_info(InventoryDatabase* inventory) {
