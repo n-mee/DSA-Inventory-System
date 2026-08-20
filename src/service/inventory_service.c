@@ -45,6 +45,20 @@ int delete_item(InventoryDatabase* inventory, int target_id) {
         free(inventory->product);
         inventory->product = NULL;
         inventory->inventory_capacity = 0;
+        return 0;
     }
+    return 1;
+}
+
+int update_item (InventoryDatabase* inventory, Product* target, int* target_id) {
+    if (inventory == NULL || target_id == NULL) return -1;
+
+    int found_id = find_item_by_id(inventory, *target_id);
+
+    if (found_id == -1) return -1;
+
+    inventory->product[found_id] = *target;
+    inventory->product[found_id].itemId = found_id;
+
     return 1;
 }
