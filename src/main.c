@@ -4,6 +4,7 @@
 #include "cli/menus.h"
 #include "input/input.h"
 #include "cli/display.h"
+#include "common/utils.h"
 #include "controller/controller.h"
 #include "model/product_model.h"
 #include "repository/inventory_database.h"
@@ -22,28 +23,39 @@ int main() {
     while(running) {
         display_menu();
         choice = get_int_input("Enter your choice: ");
+        clear_screen(2);
 
         switch (choice) 
         {
             case 1:
                 handle_display_items(&inventory, choice);
+                clear_screen(1);
                 break;
             case 2:
                 handle_display_items(&inventory, choice);
+                clear_screen(6);
                 break;
             case 3:
                 handle_display_items(&inventory, choice);
+                clear_screen(1);
                 break;
             case 4:
                 handle_display_items(&inventory, choice);
+                clear_screen(1);
                 break;
             case 5:
                 handle_display_items(&inventory, choice);
+                clear_screen(1);
                 break;
             case 6:
                 handle_display_items(&inventory, choice);
+                clear_screen(1);
                 break;
             case 0:
+                clear_screen(3);
+                printf("[+] System is exiting..\n");
+                clear_screen(2);
+                printf("[+] Thank you for checking out our system.\n");
                 running = false;
                 break;
             default:
