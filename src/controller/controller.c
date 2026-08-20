@@ -47,7 +47,7 @@ static void handle_deletion(InventoryDatabase* inventory)
     printf("[+] Operation Success!\n");
 }
 
-void handle_search_by_id(InventoryDatabase* inventory) 
+static void handle_search_by_id(InventoryDatabase* inventory) 
 {
     if (inventory == NULL) 
     {
@@ -74,10 +74,7 @@ static void update_item_info(InventoryDatabase* inventory)
         printf("[!] ERROR: Database is Null.\n");
         return;
     }
-
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
-
+    
     int target_id = get_int_input("Enter target ID: ");
 
     Product tmp = {0};
