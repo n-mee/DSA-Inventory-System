@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "model/product_model.h"
 #include "input/input.h"
+#include "common/utils.h"
 
 int get_input(const char* msg, char* target, size_t size){
     printf("%s", msg);
@@ -24,47 +24,6 @@ int get_item_credentials(Product* new_item) {
     new_item->price = get_double_input("Enter initial price: ");
 
     return 1;
-}
-
-int get_int_input(const char* msg_prompt) {
-    char buffer[100];
-    int out_n;
-
-    while (1) {
-        printf("%s", msg_prompt);
-        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-
-            if (strchr(buffer, '\n') == NULL) {
-                int c;
-                while((c = getchar()) != '\n' && c != EOF);
-            }
-
-            if (sscanf(buffer, " %d", &out_n) == 1) {
-                return out_n;
-            }
-        }
-        printf("[!] ERROR: Enter valid input.\n");
-    }
-}
-
-double get_double_input(const char* msg_prompt) {
-    char buffer[100];
-    double out_n;
-
-    while (1) {
-        printf("%s", msg_prompt);
-        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-            if (strchr(buffer, '\n') == NULL) {
-                int c;
-                while((c = getchar()) != '\n' && c != EOF);
-            }
-
-            if (sscanf(buffer, " %lf", &out_n) == 1.00){
-                return out_n;
-            } 
-        }
-        printf("[!] ERROR: Enter valid input.\n");
-    }
 }
 
 int get_new_info(Product* info) {

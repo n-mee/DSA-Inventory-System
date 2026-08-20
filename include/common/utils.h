@@ -12,7 +12,8 @@
 #include "repository/inventory_database.h"
 
 void clear_screen(unsigned int s);
-
+int get_int_input(const char* msg_prompt);
+double get_double_input(const char* msg_prompt);
 int find_item_by_id(InventoryDatabase* inventory, int target_id);
 
 #endif
