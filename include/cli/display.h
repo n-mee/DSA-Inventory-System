@@ -6,5 +6,6 @@
 
 void print_product(int product_count, Product* item);
 void view_render_table(const InventoryDatabase* inventory);
+void view_render_single_item(const Product* item);
 
 #endif

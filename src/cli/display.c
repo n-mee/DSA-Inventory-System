@@ -24,6 +24,22 @@ void view_render_table(const InventoryDatabase* inventory) {
     printf("=======================================================================\n");
 }
 
+void view_render_single_item(const Product* item) {
+    if (item == NULL) {
+        printf("[!] ERROR: Item is missing.\n");
+        return;
+    }
+
+    printf("=======================================================================\n");
+    printf("|%25s%-44s|\n", "", "Item found by ID");
+    printf("\n-----------------------------------------------------------------------\n");
+    printf("|%-15s%-54s|\n", "Name:", item->itemName);
+    printf("|%-15s%-54d|\n", "Item ID:", item->itemId);
+    printf("|%-15s%-54s|\n", "Category:", item->category);
+    printf("|%-15s$%-53.2f|\n", "Price:", item->price);
+    printf("=======================================================================\n");
+}
+
 void print_product(int product_count, Product* item) {
     for (int i = 0; i < product_count; i++) {
         printf("\nName: %s\nCategory: %s\nItem ID: %d\nPrice: %.2f\n", 
