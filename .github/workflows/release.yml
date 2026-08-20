@@ -1,0 +1,38 @@
+name: C Inventory
+
+on:
+    push:
+        branches: "main"
+    pull_request:
+        branches: "main"
+
+jobs:
+    build:
+        name: Test Code Validity
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+
+        runs-on: ${{ matrix.os }}
+
+        steps:
+            - name: Check repository code
+              uses: actions/checkout@v4
+
+            - name: Install tools and valgrind
+              if: matrix.os == 'ubuntu-latest'
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y build-essential valgrind
+
+            - name: Set up Make for Win64
+              if: matrix.os == 'windows-latest'
+              run : |
+                echo "Using built-in windows development tools"
+
+            - name: Compile projects
+              run: make all
+
+            - name: Check for memory leaks
+              if: matrix.os == 'ubuntu-latest'
+              run: echo '0' | make memcheck
