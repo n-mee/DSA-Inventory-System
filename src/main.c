@@ -32,6 +32,7 @@ int main() {
                 handle_display_items(&inventory, choice);
                 break;
             case 3:
+                handle_display_items(&inventory, choice);
                 break;
             case 4:
                 handle_display_items(&inventory, choice);
