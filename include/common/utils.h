@@ -34,7 +34,7 @@ double get_double_input(const char* msg_prompt);
 /**
  * @brief linear search algorithm for finding existing id in database
  * @param inventory reference to the inventory's database
- * @param target_id id to be do a search on
+ * @param target_id id to do a search on
  * @return -1 if fails, else it returns the if found
  */
 int find_item_by_id(InventoryDatabase* inventory, int target_id);
