@@ -4,7 +4,6 @@
 #include "model/product_model.h"
 #include "repository/inventory_database.h"
 
-void print_product(int product_count, Product* item);
 void view_render_table(const InventoryDatabase* inventory);
 void view_render_single_item(const Product* item);
 

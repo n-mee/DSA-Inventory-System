@@ -44,12 +44,3 @@ void view_render_single_item(const Product* item)
     printf("|%-15s$%-53.2f|\n", "Price:", item->price);
     printf("=======================================================================\n");
 }
-
-void print_product(int product_count, Product* item) 
-{
-    for (int i = 0; i < product_count; i++) 
-    {
-        printf("\nName: %s\nCategory: %s\nItem ID: %d\nPrice: %.2f\n", 
-            item[i].itemName, item[i].category, item[i].itemId, item[i].price);
-    }
-}
