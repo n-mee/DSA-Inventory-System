@@ -3,7 +3,7 @@
 
 #if defined(_WIN32) || defined(_WIN64)
     #include <windows.h>
-    #define sleep_ms(ms) Sleep(ms * 100)
+    #define sleep_ms(ms) Sleep(ms * 1000)
 #elif defined(__linux__)
     #include <unistd.h>
     #define sleep_ms(ms) sleep(ms);

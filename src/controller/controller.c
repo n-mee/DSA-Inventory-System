@@ -79,6 +79,11 @@ static void update_item_info(InventoryDatabase* inventory)
 
     Product tmp = {0};
 
+    if (get_new_info(&tmp) == -1) {
+        printf("[!] ERROR: An error occured when populating temporary struct.\n");
+        return;
+    }
+
     if (update_item(inventory, &tmp, &target_id) == -1) 
     {
         printf("[!] ERROR: An error occured during updating process.\n");
