@@ -32,20 +32,25 @@ int get_item_credentials(Product* new_item) {
     return 1;
 }
 
-int get_item_id(int* id) {
+int get_int_input(const char* msg_prompt) {
     char buffer[100];
+    int out_n;
 
-    printf("Enter product ID: ");
+    while (1) {
+        printf("%s", msg_prompt);
+        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
 
-    if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
-        return 0;
+            if (strchr(buffer, '\n') == NULL) {
+                int c;
+                while((c = getchar()) != '\n' && c != EOF);
+            }
+
+            if (sscanf(buffer, " %d", &out_n) == 1) {
+                return out_n;
+            }
+        }
+        printf("[!] ERROR: Enter valid input.\n");
     }
-
-    if(sscanf(buffer, " %d", id) != 1){
-        return 0;
-    }
-
-    return 1;
 }
 
 int get_new_info(Product* info) {
